@@ -110,13 +110,29 @@ Log 的作用範圍會受 `appsettings.json` 影響,另外要注意 appsettings.
 
 調整一下程式
 
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .ConfigureLogging(logging=>
+        {
+            logging.AddEventLog();
+            logging.AddFile("D:\\Temp\\Log.txt");
+        })
+        .UseStartup<Startup>()
+```
+
+這裡我使用 `Microsoft.Extensions.Logging.EventLog` 處理 EventLog 可以在 Event View 中看見記錄; 
+而 file log 我使用 `Serilog.Extensions.Logging.File` , 特別要注意以下兩點
+- Nuget 使用的版本為 2.0.0 以上版本，目前仍然不是穩定版本
+- AddFile 傳入的是記錄檔的完整 Path 而非目錄
+
 
 ## 參考
+- [ASP.NET Core Logging](https://codingblast.com/asp-net-core-logging/)
 - [Logging in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2#log-scopes)
 - [[鐵人賽 Day16] ASP.NET Core 2 系列 - 多重環境組態管理 (Multiple Environments)](https://blog.johnwu.cc/article/ironman-day16-asp-net-core-multiple-environments.html)
 - [ASP.NET Core EventLog provider](https://stackoverflow.com/questions/47773058/asp-net-core-eventlog-provider)
 - [ASP.NET Core: The MVC Request Life Cycle](http://www.techbloginterview.com/asp-net-core-the-mvc-request-life-cycle/)
-- [ASP.NET Core Logging](https://codingblast.com/asp-net-core-logging/)
 - [Monitoring and Observability in the .NET Runtime](https://mattwarren.org/2018/08/21/Monitoring-and-Observability-in-the-.NET-Runtime/)
 
 (fin)

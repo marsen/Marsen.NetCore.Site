@@ -21,7 +21,8 @@ namespace Marsen.NetCore.Site
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureLogging(logging=>
                 {
-                    logging.AddEventLog();                    
+                    logging.AddEventLog();
+                    logging.AddFile("D:\\Temp\\Log.json");
                 })
                 .UseStartup<Startup>();
     }
