@@ -19,10 +19,10 @@ namespace Marsen.NetCore.Site
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .ConfigureLogging(logging=>
+                .(logging=>
                 {
                     logging.AddEventLog();
-                    logging.AddFile("D:\\Temp\\Log.json");
+                    logging.AddFile("D:\\Temp\\Log.txt");
                 })
                 .UseStartup<Startup>();
     }

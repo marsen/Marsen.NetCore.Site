@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ElmahCore;
+using ElmahCore.Mvc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +33,12 @@ namespace Marsen.NetCore.Site
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddElmah<XmlFileErrorLog>(options =>            
+            {
+                //options.CheckPermissionAction = context => context.User.Identity.IsAuthenticated;
+                options.Path = @"elmah";
+                options.LogPath = "D:\\Temp\\elmah";
+            });
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -50,10 +58,10 @@ namespace Marsen.NetCore.Site
                 app.UseHsts();
             }
 
+            app.UseElmah();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

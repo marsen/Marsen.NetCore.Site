@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using ElmahCore;
 using Microsoft.AspNetCore.Mvc;
 using Marsen.NetCore.Site.Models;
 using Microsoft.Extensions.Logging;
@@ -30,6 +31,7 @@ namespace Marsen.NetCore.Site.Controllers
             this._logger.Log(LogLevel.Error,"HomeController Error:4");
             this._logger.Log(LogLevel.Critical,"HomeController Critical:5");
             this._logger.Log(LogLevel.None,"HomeController None:6");
+            HttpContext.RiseError(new Exception("Test for Elmah"));
             return View();
         }
 

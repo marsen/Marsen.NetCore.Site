@@ -2,7 +2,35 @@
 
 ## 概念
 
+Asp.Net Core 的 Life Cycle 由 `Program.cs` 的 `main` 方法開始(是的，就如同其它一般的程式)，  
+在 `WebHostBuilder` 中的 `ConfigureLogging` 可以提供彈性讓你設定屬於你的 LoggerProvider，
+不論是微軟提供、知名的第三方套件或是你手工自已刻一個，大致你的程式碼會如下
+
+```csharp
+public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+    WebHost.CreateDefaultBuilder(args)
+        .ConfigureLogging(logging=>
+        {
+            logging.ClearProviders();
+            logging.AddEventLog();
+            logging.AddFile("D:\\Temp\\Log.txt");
+            logging.AddConsole();
+        })
+        .UseStartup<Startup>()
+```
+
+而在 Controller 或其它 Module 間,你只要透過建構子注入 logger 實體就可以實現 log 的功能
+
+```csharp
+    public HomeController(ILogger<HomeController> logger)
+    {
+        this._logger = logger;
+    }
+```
+
 ## 預設的行為
+如果你沒有呼叫 `ConfigureLogging` 預設的行為如下述.
+
 The default project template calls `CreateDefaultBuilder`, which adds the following logging providers:
 
 - Console
@@ -68,7 +96,7 @@ fail: Marsen.NetCore.Site.Controllers.HomeController[0]
 
 [LogLevel](https://docs.microsoft.com/zh-tw/dotnet/api/microsoft.extensions.logging.loglevel?view=aspnetcore-2.2)說明了 `None` 的意義就是不記錄任何訊息，
 
-| Enum | Level |  |
+| Enum | Level | Description |
 | -------- | -------- | -------- |
 | Trace    | 0    |Logs that contain the most detailed messages. These messages may contain sensitive application data. These messages are disabled by default and should never be enabled in a production environment.   |
 | Debug     | 1     | Logs that are used for interactive investigation during development. These logs should primarily contain information useful for debugging and have no long-term value.     |
@@ -131,6 +159,26 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 Elmah 在 Net 算是一個蠻方便的工具，有提供簡易介面、可以選擇用 File 或是 Database 方式作 Logging，  
 更重要是小弟我用了 4 年，順手就研究一下。
 
+設定相當簡單, 在 `Startup.cs` 的 `ConfigureServices` 加入
+```csharp
+services.AddElmah<XmlFileErrorLog>(options =>            
+{
+    //options.CheckPermissionAction = context => context.User.Identity.IsAuthenticated;
+    //options.Path = @"elmah";
+    options.LogPath = "D:\\Temp\\elmah";
+})
+```
+
+在 `Configure` 加入
+
+```csharp
+app.UseElmah();
+```
+
+要注意是使用 `XmlFileErrorLog` 時，要設定的 options 是 LogPath 而非 Path，  
+其實使用 File 只能說是開發環境的暫時處置，真正的 Prodction 應該將 Log 放到專門的 Database 或是 Cloud Service 之中，  
+在這裡可以看見 Elmah 的行為與 Net Core 的行為並不一致，Log 與錯誤記錄本來就不該混為一談。  
+我想我要調整一下我的想法了，不過關於 Log 暫時就到此為止。
 
 
 ## 參考
