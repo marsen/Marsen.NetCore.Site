@@ -98,13 +98,14 @@ Log 的作用範圍會受 `appsettings.json` 影響,另外要注意 appsettings.
 #### EventSource
 
 如同[官方文件](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2#eventsource-provider)所說，我下載了 `PerfView` ,
-如下圖作了設定， 
-![](https://i.imgur.com/WHRwxUG.jpg)
-不過我並沒有取得記錄，
-![](https://i.imgur.com/dY9x4PG.jpg)
-錯誤訊息為 `EventSource Microsoft-Extensions-Logging: Object reference not set to an instance of an object`
-暫時不打算深追查，ETW 可以記錄的 Memory 、Disc IO 、CPU 等資訊其實與我想要的應用程式記錄有所差異，稍稍記錄一下以後也許用得到。
-如果有人能留言給我一些方向，也是非常歡迎。
+如下圖作了設定，  
+![](https://i.imgur.com/WHRwxUG.jpg)  
+不過我並沒有取得記錄，  
+![](https://i.imgur.com/dY9x4PG.jpg)  
+
+錯誤訊息為 `EventSource Microsoft-Extensions-Logging: Object reference not set to an instance of an object`  
+暫時不打算深追查，ETW 可以記錄的 Memory 、Disc IO 、CPU 等資訊其實與我想要的應用程式記錄有所差異，稍稍記錄一下以後也許用得到。  
+如果有人能留言給我一些方向，也是非常歡迎。  
 
 ## 自訂 Filelog 與 EventLog
 
@@ -121,18 +122,25 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         .UseStartup<Startup>()
 ```
 
-這裡我使用 `Microsoft.Extensions.Logging.EventLog` 處理 EventLog 可以在 Event View 中看見記錄; 
-而 file log 我使用 `Serilog.Extensions.Logging.File` , 特別要注意以下兩點
-- Nuget 使用的版本為 2.0.0 以上版本，目前仍然不是穩定版本
-- AddFile 傳入的是記錄檔的完整 Path 而非目錄
+這裡我使用 `Microsoft.Extensions.Logging.EventLog` 處理 EventLog 可以在 Event View 中看見記錄;  
+而 file log 我使用 `Serilog.Extensions.Logging.File` , 特別要注意以下兩點  
+- Nuget 使用的版本為 2.0.0 以上版本，目前仍然不是穩定版本  
+- AddFile 傳入的是記錄檔的完整 Path 而非目錄  
+
+## 自訂 Elmah
+Elmah 在 Net 算是一個蠻方便的工具，有提供簡易介面、可以選擇用 File 或是 Database 方式作 Logging，  
+更重要是小弟我用了 4 年，順手就研究一下。
+
 
 
 ## 參考
 - [ASP.NET Core Logging](https://codingblast.com/asp-net-core-logging/)
+- [.NET Core Logging With LoggerFactory: Best Practices and Tips](https://stackify.com/net-core-loggerfactory-use-correctly/)
 - [Logging in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2#log-scopes)
 - [[鐵人賽 Day16] ASP.NET Core 2 系列 - 多重環境組態管理 (Multiple Environments)](https://blog.johnwu.cc/article/ironman-day16-asp-net-core-multiple-environments.html)
 - [ASP.NET Core EventLog provider](https://stackoverflow.com/questions/47773058/asp-net-core-eventlog-provider)
 - [ASP.NET Core: The MVC Request Life Cycle](http://www.techbloginterview.com/asp-net-core-the-mvc-request-life-cycle/)
 - [Monitoring and Observability in the .NET Runtime](https://mattwarren.org/2018/08/21/Monitoring-and-Observability-in-the-.NET-Runtime/)
+- [ElmahCore/ElmahCore](https://github.com/ElmahCore/ElmahCore)
 
 (fin)
