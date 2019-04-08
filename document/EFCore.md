@@ -26,6 +26,20 @@ GO
 
 ```
 
+## Code First
+
+1. 準備 Entity
+2. 建立 DBContext
+3. Migration
+   - 建立 Migration   
+    ```shell
+    > dotnet ef migrations add Migration_creta_member
+    ```
+
+   - 執行 Migration
+    ```shell
+    > dotnet ef database update
+    ```
 
 ## 無中生有
 
@@ -50,3 +64,8 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 ```shell
 Scaffold-DbContext "Server=localhost;Database=MARS;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 ```
+
+
+
+## 參考
+- [如何在 Entity Framework Core 使用 Migration ? (PostgreSQL)](https://oomusou.io/efcore/migration/)
