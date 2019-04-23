@@ -29,17 +29,61 @@ GO
 ## Code First
 
 1. 準備 Entity
-2. 建立 DBContext
-3. Migration
-   - 建立 Migration   
-   
-    ```shell
-    > dotnet ef migrations add Migration_creta_member
+
+    ```csharp
+        public class Shop
+        {
+            public long Shop_Id { get; set; }
+            public string Shop_Title { get; set; }
+            public bool Shop_IsEnable { get; set; }
+
+        }
     ```
 
-   - 執行 Migration
+2. 建立 DBContext
+
+    記得要明確實作無參數的建構子
+    ```csharp
+        public class PhobosContext:DbContext
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PhobosContext" /> class.
+            /// </summary>
+            public PhobosContext()
+            { }
+
+            public PhobosContext(DbContextOptions<PhobosContext> options)
+                : base(options)
+            { }
+
+            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            {
+                if (!optionsBuilder.IsConfigured)
+                {
+                    optionsBuilder.UseSqlServer("Server=localhost;Database=Phobos;Trusted_Connection=True;");
+                }
+            }
+
+            public DbSet<Shop> Shop { get; set; }
+        }
+    ```
+
+3. Migration
+   - 切換到 DA 專案底下
     ```shell
-    > dotnet ef database update
+    > cd .\src\Marsen.NetCore.DA
+    ```
+
+   - 建立 Migration   
+    必要時，明確指定`Context`
+    ```shell
+    > dotnet ef migrations add Migration_creta_shop --context PhobosContext  
+    ```
+
+   - 執行 Migration   
+    必要時，明確指定`Context`
+    ```shell
+    > dotnet ef database update --context PhobosContext
     ```
 
 ## Database First
