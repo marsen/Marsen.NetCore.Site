@@ -41,7 +41,7 @@ GO
     > dotnet ef database update
     ```
 
-## 無中生有
+## Database First
 
 [工具] –> [NuGet 套件管理員] –> [套件管理員主控台]
 
@@ -59,7 +59,7 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
 更多請參考[資料庫提供者 - EF Core](https://docs.microsoft.com/zh-tw/ef/core/providers/index)
 
-###
+### Scaffold
 
 ```shell
 Scaffold-DbContext "Server=localhost;Database=MARS;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
