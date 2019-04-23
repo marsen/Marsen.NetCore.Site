@@ -6,7 +6,7 @@
 USE [MARS]
 GO
 
-/****** Object:  Table [dbo].[Member]    Script Date: 4/7/2019 5:52:11 PM ******/
+/****** Object:  Table [dbo].[Member]    Script Date: 4/23/2019 11:19:15 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -14,12 +14,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Member](
-	[MemberId] [bigint] IDENTITY(1,1) NOT NULL,
-	[MemberName] [nvarchar](20) NOT NULL,
-	[MemberAccount] [varchar](20) NOT NULL,
+	[Member_Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Member_Name] [nvarchar](20) NOT NULL,
+	[Member_Account] [varchar](20) NOT NULL,
  CONSTRAINT [PK_Member] PRIMARY KEY CLUSTERED 
 (
-	[MemberId] ASC
+	[Member_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -32,6 +32,7 @@ GO
 2. 建立 DBContext
 3. Migration
    - 建立 Migration   
+   
     ```shell
     > dotnet ef migrations add Migration_creta_member
     ```
