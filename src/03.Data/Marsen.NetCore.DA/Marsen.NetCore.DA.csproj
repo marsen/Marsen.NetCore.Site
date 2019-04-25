@@ -9,8 +9,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\Phobos\" />
-  </ItemGroup>
-
 </Project>
