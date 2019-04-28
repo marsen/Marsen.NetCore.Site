@@ -1,0 +1,13 @@
+﻿using System;
+@Section.Using@
+
+namespace @Model.NamespaceName@
+{    
+    /// <summary>
+    /// @Model.Entity@Entity
+    /// </summary>
+    public class @Model.Entity@Entity
+    {        		
+@Section.Property@
+    }
+}

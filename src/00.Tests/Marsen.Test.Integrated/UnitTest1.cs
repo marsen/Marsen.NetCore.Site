@@ -3,12 +3,12 @@ using Xunit;
 
 namespace Marsen.Test.Integrated
 {
-    public class UnitTest1
+    public class CodeGenTests
     {
         [Fact]
         public void CheckAPI()
         {
-
+            Marsen.CodeGen.Program
         }
     }
 }
