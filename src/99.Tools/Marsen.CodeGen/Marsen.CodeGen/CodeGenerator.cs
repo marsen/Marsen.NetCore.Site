@@ -75,7 +75,7 @@ namespace Marsen.CodeGen
             //// Output
             var fileInfo = new FileInfo(outFilePath);
             //// Create Folder
-            fileInfo.Directory.Create();
+            fileInfo.Directory?.Create();
             //// Create File
             File.WriteAllText(outFilePath, content, Encoding.UTF8);
         }

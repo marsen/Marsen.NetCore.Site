@@ -1,5 +1,4 @@
 ﻿using System;
-@Section.Using@
 
 namespace @Model.NamespaceName@
 {    

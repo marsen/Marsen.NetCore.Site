@@ -10,8 +10,9 @@ namespace Marsen.CodeGen
     class Program
     {
         private const string SolutionPath = @"D:\Repo\Marsen\Marsen.NetCore.Site\src\";
-        private const string DAProjectPath = @"03.Data\Marsen.NetCore.DA";
-        private const string BLProjectPath = @"02.Logic\Marsen.Business.Logic";
+        private const string DaProjectPath = @"03.Data\Marsen.NetCore.DA";
+        private const string BlProjectPath = @"02.Logic\Marsen.Business.Logic";
+        private const string ProcessorProjectPath = @"03.Data\Marsen.Data.Processor";
 
         private static readonly Dictionary<string, string> TypeLookup = new Dictionary<string, string>
         {
@@ -38,16 +39,44 @@ namespace Marsen.CodeGen
             Console.WriteLine($"SolutionPath: {SolutionPath}");
             Console.WriteLine($"Entity: {entityName}");
             Console.WriteLine("=== Start Processing ===");
-            GenerateEntity(entityName);
+            ///GenerateEntity(entityName);
+            GenerateDataProcessor(entityName);
+        }
+
+        private static void GenerateDataProcessor(string entityName)
+        {
+            //// Check Path
+            string templateName = Path.Combine("Templates", "DataStorage.txt");
+            var outFileName = $"{entityName}Storage.cs";
+            var projectPath = Path.Combine(DaProjectPath, "Storage");
+            string outFilePath = Path.Combine(Program.SolutionPath, projectPath, outFileName);
+            //// Check File
+            if (File.Exists(outFilePath))
+            {
+                Console.WriteLine($"File Already Exist! {outFileName}");
+            }
+
+            //// Prepare Data
+            var model = new Dictionary<string, string>
+            {
+                {"Model.Entity" , entityName},
+
+            };
+            var section = new Dictionary<string, string>
+            {
+            };
+
+            //// Generator
+            GenerateCode(templateName, outFilePath, model, section);
         }
 
         public static void GenerateEntity(string entityName)
         {            
             string templateName = Path.Combine("Templates", "BLEntity.txt");
             var outFileName = $"{entityName}Entity.cs";
-            var projectPath = Path.Combine(BLProjectPath, "Entities");
+            var projectPath = Path.Combine(BlProjectPath, "Entities");
             string outFilePath = Path.Combine(Program.SolutionPath, projectPath, outFileName);
-            var ormPath = Path.Combine(DAProjectPath, "Models");            
+            var ormPath = Path.Combine(DaProjectPath, "Models");            
             string sourceFile = Path.Combine(Program.SolutionPath, ormPath, $"{entityName}.cs");
             if (File.Exists(outFilePath))
             {
@@ -95,7 +124,6 @@ namespace Marsen.CodeGen
 
             var section = new Dictionary<string, string>
             {
-                {"Section.Using" , "using Marsen.Business.Logic.Entities;" },
                 {"Section.Property",property },
             };
 

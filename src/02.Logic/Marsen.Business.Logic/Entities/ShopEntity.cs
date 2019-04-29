@@ -1,5 +1,4 @@
 ﻿using System;
-using Marsen.Business.Logic.Entities;
 
 namespace Marsen.Business.Logic.Entities
 {    

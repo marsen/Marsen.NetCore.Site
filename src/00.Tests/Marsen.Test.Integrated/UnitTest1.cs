@@ -8,7 +8,6 @@ namespace Marsen.Test.Integrated
         [Fact]
         public void CheckAPI()
         {
-            Marsen.CodeGen.Program
         }
     }
 }

@@ -5,16 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\02.Logic\Marsen.Business.Logic\Marsen.Business.Logic.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Storage\" />
+    <Folder Include="Processors\" />
   </ItemGroup>
 
 </Project>
