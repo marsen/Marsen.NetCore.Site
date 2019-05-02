@@ -41,10 +41,10 @@ namespace Marsen.CodeGen
 
             foreach (var key in model.Keys)
             {
-                var keyWorkd = $"@{key}@";
-                if (line.Contains(keyWorkd))
+                var keyWord = $"@{key}@";
+                if (line.Contains(keyWord))
                 {
-                    line = line.Replace(keyWorkd, model[key]);
+                    line = line.Replace(keyWord, model[key]);
                 }
             }
             return line;
