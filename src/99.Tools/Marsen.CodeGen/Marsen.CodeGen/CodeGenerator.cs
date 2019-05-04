@@ -9,12 +9,12 @@ namespace Marsen.CodeGen
     {
         public string Generator(string templateFile, Dictionary<string, string> model, Dictionary<string, string> section)
         {
-            StringBuilder sb = new StringBuilder();
-
-            foreach (var line in ReadLineAsync(templateFile))
+            var stringBuilder = new StringBuilder(new StreamReader(templateFile).ReadToEnd());
+            foreach (var key in model.Keys)
             {
-                var newLine = this.ConvertLine(line, model);
-                sb.AppendLine(newLine);
+                var keyWord = $"@{key}@";
+                stringBuilder.Replace(keyWord, model[key]);
+
             }
 
             if (section != null)
@@ -22,11 +22,11 @@ namespace Marsen.CodeGen
                 foreach (var key in section.Keys)
                 {
                     var keyWord = $"@{key}@";
-                    sb.Replace(keyWord, section[key]);
+                    stringBuilder.Replace(keyWord, section[key]);
                 }
             }
 
-            return sb.ToString();
+            return stringBuilder.ToString();
         }
 
         /// <summary>
@@ -78,18 +78,6 @@ namespace Marsen.CodeGen
             fileInfo.Directory?.Create();
             //// Create File
             File.WriteAllText(outFilePath, content, Encoding.UTF8);
-        }
-
-        public static IEnumerable<string> ReadLineAsync(string fileName)
-        {
-            using (var streamReader = new StreamReader(fileName))
-            {
-                string line;
-                while ((line = streamReader.ReadLine()) != null)
-                {
-                    yield return line;
-                }
-            }
         }
     }
 }
