@@ -12,24 +12,26 @@ namespace Marsen.CodeGen
         private const string SolutionPath = @"D:\Repo\Marsen\Marsen.NetCore.Site\src\";
         private const string DaProjectPath = @"03.Data\Marsen.NetCore.DA";
         private const string BlProjectPath = @"02.Logic\Marsen.Business.Logic";
-        private static readonly Dictionary<string, string> TypeLookup = new Dictionary<string, string>
+
+        private static readonly Dictionary<Type, string> TypeLookup = new Dictionary<Type, string>
         {
-            {"System.Int32", "int"},
-            {"System.Nullable`1[System.Int32]", "long?"},
-            {"System.Int64", "long"},
-            {"System.Nullable`1[System.Int64]", "long?"},
-            {"System.String", "string"},
-            {"System.Byte", "byte"},
-            {"System.Nullable`1[System.Byte]", "byte?"},
-            {"System.Boolean", "bool"},
-            {"System.Nullable`1[System.Boolean]", "bool?"},
-            {"System.DateTime", "DateTime"},
-            {"System.Nullable`1[System.DateTime]", "DateTime?"},
-            {"System.TimeSpan", "TimeSpan"},
-            {"System.Nullable`1[System.TimeSpan]", "TimeSpan?"},
-            {"System.Decimal", "decimal"},
-            {"System.Nullable`1[System.Decimal]", "decimal?"},
+            {typeof(int), "int"},
+            {typeof(int?), "int?"},
+            {typeof(long), "long"},
+            {typeof(long?), "long?"},
+            {typeof(decimal), "decimal"},
+            {typeof(decimal?), "decimal?"},
+            {typeof(string), "string"},
+            {typeof(byte), "byte"},
+            {typeof(byte?), "byte?"},
+            {typeof(bool), "bool"},
+            {typeof(bool?), "bool?"},
+            {typeof(DateTime), "DateTime"},
+            {typeof(DateTime?), "DateTime?"},
+            {typeof(TimeSpan), "TimeSpan"},
+            {typeof(TimeSpan?), "TimeSpan?"},
         };
+
         public void GenerateDataStorage(string entityName)
         {
             //// Check Path
@@ -57,14 +59,13 @@ namespace Marsen.CodeGen
         public void GenerateBlEntity(string entityName)
         {
             var templateName = Path.Combine("Templates", "BLEntity.txt");
-            var outFileName = $"{entityName}Entity.cs";
             var projectPath = Path.Combine(BlProjectPath, "Entities");
-            var outFilePath = Path.Combine(SolutionPath, projectPath, outFileName);
+            var outFilePath = Path.Combine(SolutionPath, projectPath, $"{entityName}Entity.cs");
             var ormPath = Path.Combine(DaProjectPath, "Models");
             var sourceFile = Path.Combine(SolutionPath, ormPath, $"{entityName}.cs");
             if (File.Exists(outFilePath))
             {
-                Console.WriteLine($"File Already Exist! {outFileName}");
+                Console.WriteLine($"File Already Exist! {entityName}Entity.cs");
             }
 
             var model = new Dictionary<string, string>
@@ -96,10 +97,11 @@ namespace Marsen.CodeGen
                 {
                     continue;
                 }
-                var keyword = p.PropertyType.ToString();
-                if (TypeLookup.Keys.Contains(keyword))
+
+                var keyword = string.Empty;
+                if (TypeLookup.Keys.Contains(p.PropertyType))
                 {
-                    keyword = TypeLookup[p.PropertyType.ToString()];
+                    keyword = TypeLookup[p.PropertyType];
                 }
 
                 property += $"\t\t/// <summary>\n\t\t/// {regex.Replace(p.Name, string.Empty, 1)}\n\t\t/// </summary>\n\t\tpublic {keyword} {regex.Replace(p.Name, string.Empty, 1)} {{ get; set; }}\n\n";
