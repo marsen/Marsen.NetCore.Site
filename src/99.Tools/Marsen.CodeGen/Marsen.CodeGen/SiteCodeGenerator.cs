@@ -35,43 +35,52 @@ namespace Marsen.CodeGen
         public void GenerateDataStorage(string entityName)
         {
             //// Check Path
-            var templateName = Path.Combine("Templates", "DataStorage.txt");
-            var outFileName = $"{entityName}Storage.cs";
-            var projectPath = Path.Combine(DaProjectPath, "Storage");
-            var outFilePath = Path.Combine(SolutionPath, projectPath, outFileName);
-            //// Check File
-            if (File.Exists(outFilePath))
-            {
-                Console.WriteLine($"File Already Exist! {outFileName}");
-            }
-
-            //// Prepare Data
+            var outFilePath = GetOutFilePath(entityName, 
+                new ProjectInfo
+                {
+                    Path = DaProjectPath,
+                    Folder = "Storage",
+                    Suffix = "Storage"
+                });
             var model = new Dictionary<string, string>
             {
-                {"Model.Entity" , entityName},
+                {"Model.Entity", entityName},
             };
             var section = new Dictionary<string, string>();
 
             //// Generator
-            GenerateCode(templateName, outFilePath, model, section);
+            GenerateCode(Path.Combine("Templates", "DataStorage.txt"), outFilePath, model, section);
         }
+
+        private string GetOutFilePath(string entityName, ProjectInfo info)
+        {
+            var projectPath = Path.Combine(info.Path, info.Folder);
+            var outFilePath = Path.Combine(SolutionPath, projectPath, $"{entityName}{info.Suffix}.cs");
+            if (File.Exists(outFilePath))
+            {
+                Console.WriteLine($"File Already Exist! {entityName}{info.Suffix}.cs");
+            }
+
+            return outFilePath;
+        }
+
 
         public void GenerateBlEntity(string entityName)
         {
-            var templateName = Path.Combine("Templates", "BLEntity.txt");
-            var projectPath = Path.Combine(BlProjectPath, "Entities");
-            var outFilePath = Path.Combine(SolutionPath, projectPath, $"{entityName}Entity.cs");
+            var outFilePath = GetOutFilePath(entityName,
+                new ProjectInfo
+                {
+                    Path = BlProjectPath,
+                    Folder = "Entities",
+                    Suffix = "Entity"
+                });
             var ormPath = Path.Combine(DaProjectPath, "Models");
             var sourceFile = Path.Combine(SolutionPath, ormPath, $"{entityName}.cs");
-            if (File.Exists(outFilePath))
-            {
-                Console.WriteLine($"File Already Exist! {entityName}Entity.cs");
-            }
 
             var model = new Dictionary<string, string>
             {
-                {"Model.NamespaceName" , "Marsen.Business.Logic.Entities" },
-                {"Model.Entity" , entityName},
+                {"Model.NamespaceName", "Marsen.Business.Logic.Entities"},
+                {"Model.Entity", entityName},
             };
 
             //// Parse
@@ -90,6 +99,7 @@ namespace Marsen.CodeGen
 
             var property = string.Empty;
             var regex = new Regex(Regex.Escape(entityName));
+            var keyword = string.Empty;
             foreach (var p in typeInfos.GetProperties())
             {
                 var columnName = $"{entityName}{regex.Replace(p.Name, string.Empty, 1)}";
@@ -98,23 +108,24 @@ namespace Marsen.CodeGen
                     continue;
                 }
 
-                var keyword = string.Empty;
                 if (TypeLookup.Keys.Contains(p.PropertyType))
                 {
                     keyword = TypeLookup[p.PropertyType];
                 }
 
-                property += $"\t\t/// <summary>\n\t\t/// {regex.Replace(p.Name, string.Empty, 1)}\n\t\t/// </summary>\n\t\tpublic {keyword} {regex.Replace(p.Name, string.Empty, 1)} {{ get; set; }}\n\n";
+                property +=
+                    $"\t\t/// <summary>\n\t\t/// {regex.Replace(p.Name, string.Empty, 1)}\n\t\t/// </summary>\n\t\tpublic {keyword} {regex.Replace(p.Name, string.Empty, 1)} {{ get; set; }}\n\n";
             }
 
             var section = new Dictionary<string, string>
             {
-                {"Section.Property",property },
+                {"Section.Property", property},
             };
 
             //// Generator
-            GenerateCode(templateName, outFilePath, model, section);
+            GenerateCode(Path.Combine("Templates", "BLEntity.txt"), outFilePath, model, section);
         }
+
 
         private string GetColumnDesc(string tableName)
         {
@@ -135,7 +146,8 @@ namespace Marsen.CodeGen
             File.WriteAllText(outFilePath, content, Encoding.UTF8);
         }
 
-        public void GenerateCode(string templateName, string outFilePath, Dictionary<string, string> model, Dictionary<string, string> section = null)
+        public void GenerateCode(string templateName, string outFilePath, Dictionary<string, string> model,
+            Dictionary<string, string> section = null)
         {
             var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, templateName);
 
@@ -145,7 +157,13 @@ namespace Marsen.CodeGen
 
             //// Write File
             GenerateFile(outFilePath, result);
-
         }
+    }
+
+    public struct ProjectInfo
+    {
+        public string Path { get; set; }
+        public string Folder { get; set; }
+        public string Suffix { get; set; }
     }
 }
