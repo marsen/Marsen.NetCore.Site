@@ -40,7 +40,8 @@ namespace Marsen.CodeGen
                 {
                     Path = DaProjectPath,
                     Folder = "Storage/Interface",
-                    Suffix = "Storage"
+                    Suffix = "Storage",
+                    Prefix = "I",
                 });
             var model = new Dictionary<string, string>
             {
@@ -75,10 +76,10 @@ namespace Marsen.CodeGen
         private string GetOutFilePath(string entityName, ProjectInfo info)
         {
             var projectPath = Path.Combine(info.Path, info.Folder);
-            var outFilePath = Path.Combine(SolutionPath, projectPath, $"{entityName}{info.Suffix}.cs");
+            var outFilePath = Path.Combine(SolutionPath, projectPath, $"{info.Prefix}{entityName}{info.Suffix}.cs");
             if (File.Exists(outFilePath))
             {
-                Console.WriteLine($"File Already Exist! {entityName}{info.Suffix}.cs");
+                Console.WriteLine($"File Already Exist! {info.Prefix}{entityName}{info.Suffix}.cs");
             }
 
             return outFilePath;
@@ -187,5 +188,6 @@ namespace Marsen.CodeGen
         public string Path { get; set; }
         public string Folder { get; set; }
         public string Suffix { get; set; }
+        public string Prefix { get; set; }
     }
 }
