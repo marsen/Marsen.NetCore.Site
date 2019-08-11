@@ -6,7 +6,7 @@ using Marsen.NetCore.DA.Models;
 
 namespace Marsen.NetCore.DA.Storage
 {
-    public class ProductStorage:IRead<ProductEntity>
+    public class ProductStorage:IProductStorage
     {
         public ProductEntity Read(long id)
         {

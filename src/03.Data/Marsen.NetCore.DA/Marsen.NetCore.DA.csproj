@@ -14,4 +14,8 @@
     <ProjectReference Include="..\..\02.Logic\Marsen.Business.Logic\Marsen.Business.Logic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Storage\Interface\" />
+  </ItemGroup>
+
 </Project>
