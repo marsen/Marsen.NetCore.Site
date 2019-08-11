@@ -10,7 +10,7 @@ namespace Marsen.NetCore.DA.Storage
     {
         public ProductEntity Read(long id)
         {
-            using (var context=new PhobosContext())
+            using (var context=new MARSContext())
             {
                 var result = context.Product.FirstOrDefault(x => x.ProductId == id);
                 return AutoMapper.Mapper.Map<ProductEntity>(result);

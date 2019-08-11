@@ -17,7 +17,7 @@ namespace Marsen.NetCore.DA.Models
 
         public virtual DbSet<Member> Member { get; set; }
 
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
