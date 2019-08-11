@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Marsen.NetCore.DA.Migrations
+namespace Marsen.NetCore.DA.Migrations.Phobos
 {
-    [DbContext(typeof(MARSContext))]
-    partial class MARSContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PhobosContext))]
+    partial class PhobosContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -18,28 +18,19 @@ namespace Marsen.NetCore.DA.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Marsen.NetCore.DA.Models.Member", b =>
+            modelBuilder.Entity("Marsen.NetCore.DA.Models.Shop", b =>
                 {
-                    b.Property<long>("MemberId")
+                    b.Property<long>("Shop_Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("MemberAccount")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .IsUnicode(false);
+                    b.Property<bool>("Shop_IsEnable");
 
-                    b.Property<string>("MemberName")
-                        .IsRequired()
-                        .HasMaxLength(20);
+                    b.Property<string>("Shop_Title");
 
-                    b.HasKey("MemberId");
+                    b.HasKey("Shop_Id");
 
-                    b.HasIndex("MemberId")
-                        .IsUnique()
-                        .HasName("IX_MemberAccount");
-
-                    b.ToTable("Member");
+                    b.ToTable("Shop");
                 });
 #pragma warning restore 612, 618
         }

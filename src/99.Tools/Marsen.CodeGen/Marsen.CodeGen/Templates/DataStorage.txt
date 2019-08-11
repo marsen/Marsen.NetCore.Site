@@ -1,0 +1,20 @@
+﻿using System;
+using System.Linq;
+using Marsen.Business.Logic.Entities;
+using Marsen.Business.Logic.Services;
+using Marsen.NetCore.DA.Models;
+
+namespace Marsen.NetCore.DA.Storage
+{
+    public class @Model.Entity@Storage:IRead<@Model.Entity@Entity>
+    {
+        public @Model.Entity@Entity Read(long id)
+        {
+            using (var context=new PhobosContext())
+            {
+                var result = context.@Model.Entity@.FirstOrDefault(x => x.@Model.Entity@Id == id);
+                return AutoMapper.Mapper.Map<@Model.Entity@Entity>(result);
+            }
+        }
+    }
+}
