@@ -32,6 +32,26 @@ namespace Marsen.CodeGen
             {typeof(TimeSpan?), "TimeSpan?"},
         };
 
+        public void GenerateDataStorageInterface(string entityName)
+        {
+            //// Check Path
+            var outFilePath = GetOutFilePath(entityName,
+                new ProjectInfo
+                {
+                    Path = DaProjectPath,
+                    Folder = "Storage/Interface",
+                    Suffix = "Storage"
+                });
+            var model = new Dictionary<string, string>
+            {
+                {"Model.Entity", entityName},
+            };
+            var section = new Dictionary<string, string>();
+
+            //// Generator
+            GenerateCode(Path.Combine("Templates", "DataStorageInterface.txt"), outFilePath, model, section);
+        }
+
         public void GenerateDataStorage(string entityName)
         {
             //// Check Path
@@ -158,6 +178,8 @@ namespace Marsen.CodeGen
             //// Write File
             GenerateFile(outFilePath, result);
         }
+
+        
     }
 
     public struct ProjectInfo

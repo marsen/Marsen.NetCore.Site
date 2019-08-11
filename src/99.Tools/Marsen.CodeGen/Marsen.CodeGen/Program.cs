@@ -16,6 +16,7 @@ namespace Marsen.CodeGen
             Console.WriteLine("=== Start Processing ===");
             var siteGen = new SiteCodeGenerator();
             siteGen.GenerateBlEntity(entityName);
+            siteGen.GenerateDataStorageInterface(entityName);
             siteGen.GenerateDataStorage(entityName);
         }
     }
