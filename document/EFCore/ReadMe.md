@@ -16,12 +16,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Member](
-[Member_Id] [bigint] IDENTITY(1,1) NOT NULL,
-[Member_Name] [nvarchar](20) NOT NULL,
-[Member_Account] [varchar](20) NOT NULL,
- CONSTRAINT [PK_Member] PRIMARY KEY CLUSTERED
+    [Member_Id] [bigint] IDENTITY(1,1) NOT NULL,
+    [Member_Name] [nvarchar](20) NOT NULL,
+    [Member_Account] [varchar](20) NOT NULL,
+    CONSTRAINT [PK_Member] PRIMARY KEY CLUSTERED
 (
-[Member_Id] ASC
+    [Member_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
