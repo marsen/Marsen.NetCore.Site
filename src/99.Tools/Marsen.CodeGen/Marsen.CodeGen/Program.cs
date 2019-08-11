@@ -11,7 +11,7 @@ namespace Marsen.CodeGen
     {
         static void Main(string[] args)
         {
-            var entityName = "Shop";            
+            var entityName = "Product";            
             Console.WriteLine($"Entity: {entityName}");
             Console.WriteLine("=== Start Processing ===");
             var siteGen = new SiteCodeGenerator();
