@@ -13,6 +13,6 @@
 
 - 未提供 Controller 的 Code Gen
 - 未提供 Service 的 Code Gen
-- 不明原因 Code Gen 會取到舊的 Template 
+- 一定要先建置， Code Gen 才會取到新的 Template
 
 (fin)
