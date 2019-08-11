@@ -38,8 +38,8 @@ namespace Marsen.CodeGen
             var outFilePath = GetOutFilePath(entityName,
                 new ProjectInfo
                 {
-                    Path = DaProjectPath,
-                    Folder = "Storage/Interface",
+                    Path = BlProjectPath,
+                    Folder = "Interface",
                     Suffix = "Storage",
                     Prefix = "I",
                 });
