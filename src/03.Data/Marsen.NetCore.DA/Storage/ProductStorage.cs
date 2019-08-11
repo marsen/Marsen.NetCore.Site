@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Marsen.Business.Logic.Entities;
-using Marsen.Business.Logic.Services;
+using Marsen.Business.Logic.Interface;
 using Marsen.NetCore.DA.Models;
-using Marsen.NetCore.DA.Storage.Interface;
 
 namespace Marsen.NetCore.DA.Storage
 {
