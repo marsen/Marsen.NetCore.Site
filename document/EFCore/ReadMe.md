@@ -1,3 +1,5 @@
+#
+
 ## 建立資料庫
 
 ### Table
@@ -14,12 +16,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[Member](
-	[Member_Id] [bigint] IDENTITY(1,1) NOT NULL,
-	[Member_Name] [nvarchar](20) NOT NULL,
-	[Member_Account] [varchar](20) NOT NULL,
- CONSTRAINT [PK_Member] PRIMARY KEY CLUSTERED 
+[Member_Id] [bigint] IDENTITY(1,1) NOT NULL,
+[Member_Name] [nvarchar](20) NOT NULL,
+[Member_Account] [varchar](20) NOT NULL,
+ CONSTRAINT [PK_Member] PRIMARY KEY CLUSTERED
 (
-	[Member_Id] ASC
+[Member_Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -43,6 +45,7 @@ GO
 2. 建立 DBContext
 
     記得要明確實作無參數的建構子
+
     ```csharp
         public class PhobosContext:DbContext
         {
@@ -70,18 +73,21 @@ GO
 
 3. Migration
    - 切換到 DA 專案底下
+
     ```shell
     > cd .\src\Marsen.NetCore.DA
     ```
 
-   - 建立 Migration   
+   - 建立 Migration
     必要時，明確指定`Context`
+
     ```shell
     > dotnet ef migrations add Migration_creta_shop --context PhobosContext  
     ```
 
-   - 執行 Migration   
+   - 執行 Migration
     必要時，明確指定`Context`
+
     ```shell
     > dotnet ef database update --context PhobosContext
     ```
@@ -110,7 +116,8 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer
 Scaffold-DbContext "Server=localhost;Database=MARS;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
 ```
 
-
-
 ## 參考
+
 - [如何在 Entity Framework Core 使用 Migration ? (PostgreSQL)](https://oomusou.io/efcore/migration/)
+
+(fin)
