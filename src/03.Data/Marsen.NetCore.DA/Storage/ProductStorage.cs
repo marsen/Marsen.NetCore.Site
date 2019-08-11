@@ -3,6 +3,7 @@ using System.Linq;
 using Marsen.Business.Logic.Entities;
 using Marsen.Business.Logic.Services;
 using Marsen.NetCore.DA.Models;
+using Marsen.NetCore.DA.Storage.Interface;
 
 namespace Marsen.NetCore.DA.Storage
 {
