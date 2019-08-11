@@ -1,0 +1,31 @@
+﻿using Marsen.Business.Logic.Entities;
+using Marsen.Business.Logic.Interface;
+
+namespace Marsen.Business.Logic.Services
+{
+    public partial class @Model.Entity@Service 
+    {
+        /// <summary>
+        /// The @Model.Entity@ Service
+        /// </summary>
+        private readonly I@Model.Entity@Storage _@Model.Service@Storage;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductService" /> class.
+        /// </summary>
+        public ProductService(I@Model.Entity@Storage @Model.Service@Storage)
+        {
+            this._@Model.Service@Storage = @Model.Service@Storage;
+        }
+
+        /// <summary>
+        /// Reads the specified identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>ProductEntity</returns>
+        public @Model.Entity@Entity Read(long id)
+        {
+            return this._@Model.Service@Storage.Read(id);
+        }
+    }
+}

@@ -18,6 +18,7 @@ namespace Marsen.CodeGen
             siteGen.GenerateBlEntity(entityName);
             siteGen.GenerateDataStorageInterface(entityName);
             siteGen.GenerateDataStorage(entityName);
+            siteGen.GenerateLogicService(entityName);
         }
     }
 }

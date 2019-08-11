@@ -18,6 +18,9 @@
     <None Update="Templates\BLEntity.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Templates\LogicServices.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Templates\DataStorageInterface.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

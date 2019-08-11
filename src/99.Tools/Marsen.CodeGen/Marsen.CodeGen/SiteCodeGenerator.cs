@@ -180,7 +180,28 @@ namespace Marsen.CodeGen
             GenerateFile(outFilePath, result);
         }
 
-        
+
+        public void GenerateLogicService(string entityName)
+        {
+
+            //// Check Path
+            var outFilePath = GetOutFilePath(entityName,
+                new ProjectInfo
+                {
+                    Path = BlProjectPath,
+                    Folder = "Services",
+                    Suffix = "Service"
+                });
+            var model = new Dictionary<string, string>
+            {
+                {"Model.Entity", entityName},
+                {"Model.Service", entityName.ToLower()},
+            };
+            var section = new Dictionary<string, string>();
+
+            //// Generator
+            GenerateCode(Path.Combine("Templates", "LogicServices.txt"), outFilePath, model, section);
+        }
     }
 
     public struct ProjectInfo
