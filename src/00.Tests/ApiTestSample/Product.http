@@ -1,0 +1,12 @@
+@url = https://localhost:5001/
+###
+GET {{url}}api/product
+
+###
+POST {{url}}api/product
+
+###
+PUT {{url}}api/product
+
+###
+DELETE {{url}}api/product
