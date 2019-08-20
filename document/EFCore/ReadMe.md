@@ -92,6 +92,16 @@ GO
     > dotnet ef database update --context PhobosContext
     ```
 
+### 情境 : 重置 Database 環境
+
+Code First 適合用於重置開發測試環境，  
+如果有固定將 Migration File 進行版控，  
+只需要單純執行 Migration 語法即可  
+
+```shell=
+> dotnet ef database update --context MARSContext
+```
+
 ## Database First
 
 [工具] –> [NuGet 套件管理員] –> [套件管理員主控台]
