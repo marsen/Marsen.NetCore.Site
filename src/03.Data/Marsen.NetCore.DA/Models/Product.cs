@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Marsen.NetCore.DA.Models
 {
+    [Table("Product")]
     public class Product
     {
         [Key]
