@@ -102,6 +102,47 @@ Code First 適合用於重置開發測試環境，
 > dotnet ef database update --context MARSContext
 ```
 
+### 情境 : 重新命名 Table Name
+
+兩種作法
+
+#### Data Annotations
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+// Change table name to People
+[Table("People")]
+public class Employee
+{
+    // Change column name to PersonId
+    [Column("PersonId")]
+    public int Id { get; set; }
+    public Guid DepartmentId { get; set; }
+    public int CompanyId { get; set; }
+}
+```
+
+#### FluentAPI
+
+```csharp
+using System.Data.Entity;
+
+protected override void OnModelCreating(DbModelBuilder modelBuilder)
+{
+    // Change column name to PersonId
+    modelBuilder.Entity<Employee>()
+        .Property(p => p.Id)
+        .HasColumnName("PersonId");
+
+    // Change table name to People
+    modelBuilder.Entity<Employee>()
+        .ToTable("People");
+}
+```
+
+
 ## Database First
 
 [工具] –> [NuGet 套件管理員] –> [套件管理員主控台]
@@ -129,5 +170,5 @@ Scaffold-DbContext "Server=localhost;Database=MARS;Trusted_Connection=True;" Mic
 ## 參考
 
 - [如何在 Entity Framework Core 使用 Migration ? (PostgreSQL)](https://oomusou.io/efcore/migration/)
-
+- [Rename Table and Column Name in EF Code First](https://stack247.wordpress.com/2015/06/18/rename-table-and-column-name-in-ef-code-first/)
 (fin)
