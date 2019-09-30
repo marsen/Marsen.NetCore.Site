@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Marsen.Business.Logic.Interface;
+using Marsen.NetCore.DA.Mapper;
+using Marsen.NetCore.DA.Storage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,6 +40,14 @@ namespace Marsen.NetCore.Site
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // Register the Swagger services
             services.AddSwaggerDocument();
+            //Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new ShopMapping());
+            });
+            var mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+            services.AddScoped<IProductStorage, ProductStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

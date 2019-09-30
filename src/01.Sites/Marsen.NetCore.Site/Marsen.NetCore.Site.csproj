@@ -12,4 +12,8 @@
     <PackageReference Include="NSwag.AspNetCore" Version="13.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\03.Data\Marsen.NetCore.DA\Marsen.NetCore.DA.csproj" />
+  </ItemGroup>
+
 </Project>
