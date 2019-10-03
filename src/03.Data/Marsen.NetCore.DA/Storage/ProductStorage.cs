@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using AutoMapper;
 using Marsen.Business.Logic.Entities;
 using Marsen.Business.Logic.Interface;
 using Marsen.NetCore.DA.Models;
