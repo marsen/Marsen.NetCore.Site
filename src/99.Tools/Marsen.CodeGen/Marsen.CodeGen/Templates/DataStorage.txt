@@ -5,14 +5,34 @@ using Marsen.NetCore.DA.Models;
 
 namespace Marsen.NetCore.DA.Storage
 {
+    /// <summary>
+    /// @Model.Entity@Storage
+    /// </summary>
+    /// <seealso cref="IProductStorage" />
     public class @Model.Entity@Storage:I@Model.Entity@Storage
     {
+        /// <summary>
+        /// The mapper
+        /// </summary>
+        private readonly IMapper _mapper;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductStorage" /> class.
+        /// </summary>
+        public ProductStorage(IMapper mapper)
+        {
+            this._mapper = mapper;
+        }
+
+        /// <summary>Reads the specified identifier.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>@Model.Entity@Entity </returns>
         public @Model.Entity@Entity Read(long id)
         {
             using (var context=new MARSContext())
             {
                 var result = context.@Model.Entity@.FirstOrDefault(x => x.@Model.Entity@Id == id);
-                return AutoMapper.Mapper.Map<@Model.Entity@Entity>(result);
+                return this._mapper.Map<@Model.Entity@Entity>(result);
             }
         }
     }

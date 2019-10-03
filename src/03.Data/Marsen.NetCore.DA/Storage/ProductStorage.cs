@@ -1,13 +1,19 @@
 ﻿using System.Linq;
-using AutoMapper;
 using Marsen.Business.Logic.Entities;
 using Marsen.Business.Logic.Interface;
 using Marsen.NetCore.DA.Models;
 
 namespace Marsen.NetCore.DA.Storage
 {
+    /// <summary>
+    /// ProductStorage
+    /// </summary>
+    /// <seealso cref="IProductStorage" />
     public class ProductStorage:IProductStorage
     {
+        /// <summary>
+        /// The mapper
+        /// </summary>
         private readonly IMapper _mapper;
 
         /// <summary>
@@ -17,6 +23,10 @@ namespace Marsen.NetCore.DA.Storage
         {
             this._mapper = mapper;
         }
+
+        /// <summary>Reads the specified identifier.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>ProductEntity </returns>
         public ProductEntity Read(long id)
         {
             using (var context=new MARSContext())
