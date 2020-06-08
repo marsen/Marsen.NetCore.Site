@@ -1,6 +1,6 @@
-﻿using Marsen.NetCore.Site.Models;
+﻿using System.Diagnostics;
+using Marsen.NetCore.Site.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace Marsen.NetCore.Site.Controllers
 {
