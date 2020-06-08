@@ -27,8 +27,9 @@ namespace Marsen.NetCore.Site
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddMvc();
             services.AddControllers();
-            services.AddRazorPages();
+            //// services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

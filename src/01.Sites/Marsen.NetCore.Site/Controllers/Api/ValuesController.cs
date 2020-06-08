@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Marsen.NetCore.Site.Controllers
+namespace Marsen.NetCore.Site.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
