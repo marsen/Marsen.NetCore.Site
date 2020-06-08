@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Marsen.NetCore.Site.Controllers.Api
 {
@@ -7,17 +8,25 @@ namespace Marsen.NetCore.Site.Controllers.Api
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ILogger<ValuesController> _logger;
+
+        public ValuesController(ILogger<ValuesController> logger)
+        {
+            _logger = logger;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new[] { "value1", "value2" };
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
+            _logger.LogTrace(id.ToString());
             return "value";
         }
 

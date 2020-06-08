@@ -15,10 +15,10 @@ namespace Marsen.NetCore.Site.Controllers.Api
         }
 
         [HttpPost]
-        public IActionResult Trace(string message)
+        public ActionResult<string> Trace(string message)
         {
             _logger.LogTrace(message);
-            return Ok();
+            return "logged";
         }
     }
 }
