@@ -1,5 +1,3 @@
-using System;
-
 namespace Marsen.NetCore.Site.Models
 {
     public class ErrorViewModel
