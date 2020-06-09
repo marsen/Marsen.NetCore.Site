@@ -18,7 +18,7 @@ namespace Marsen.NetCore.Site.Controllers.Api
         public ActionResult<string> Trace(string message)
         {
             _logger.LogTrace(message);
-            return "logged";
+            return Ok("logged");
         }
     }
 }
