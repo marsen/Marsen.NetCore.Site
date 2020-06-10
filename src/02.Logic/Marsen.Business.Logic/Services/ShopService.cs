@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Marsen.Business.Logic.Services
 {
-    public class ShopService
+    public class ShopService:IShopService
     {
         public ShopEntity Get(long id)
         {
@@ -18,5 +18,10 @@ namespace Marsen.Business.Logic.Services
             };
             return shopList.First(s => s.Id == id);
         }
+    }
+
+    public interface IShopService
+    {
+        ShopEntity Get(long id);
     }
 }

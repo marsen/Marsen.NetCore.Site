@@ -7,11 +7,17 @@ namespace Marsen.NetCore.Site.Controllers.Api
     [ApiController]
     public class ShopController : ControllerBase
     {
+        private readonly IShopService _shopService;
+
+        public ShopController(IShopService shopService)
+        {
+            _shopService = shopService;
+        }
+
         [HttpGet("{id}")]
         public ActionResult<string> Get(long id)
         {
-            ShopService shopService = new ShopService();
-            var result = shopService.Get(id);
+            var result = _shopService.Get(id);
             return Ok(result);
         }
     }
