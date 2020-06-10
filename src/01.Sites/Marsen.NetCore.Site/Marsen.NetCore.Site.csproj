@@ -5,4 +5,8 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\02.Logic\Marsen.Business.Logic\Marsen.Business.Logic.csproj" />
+  </ItemGroup>
+
 </Project>
