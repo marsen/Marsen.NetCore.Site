@@ -1,5 +1,5 @@
 ﻿using System;
-using Marsen.Business.Logic.Services;
+using Marsen.Business.Logic.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

@@ -1,6 +1,7 @@
 ﻿using Marsen.Business.Logic.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using Marsen.Business.Logic.Interfaces;
 
 namespace Marsen.Business.Logic.Services
 {
@@ -18,10 +19,5 @@ namespace Marsen.Business.Logic.Services
             };
             return shopList.First(s => s.Id == id);
         }
-    }
-
-    public interface IShopService
-    {
-        ShopEntity Get(long id);
     }
 }
