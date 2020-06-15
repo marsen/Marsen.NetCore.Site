@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Tests", "00.Tests", "{6C573280-0FAD-4572-B38B-C5725A9E8E4A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marsen.Test.Integrated", "src\00.Tests\Marsen.Test.Integrated\Marsen.Test.Integrated.csproj", "{A0A0D1F2-3C9D-40D3-9839-B47210A0A0EC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99.Tools", "99.Tools", "{E1F7B885-95CD-4787-BF0A-EFAF26827768}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marsen.CodeGen", "src\99.Tools\Marsen.CodeGen\Marsen.CodeGen\Marsen.CodeGen.csproj", "{936EC0A7-EF33-4DBB-B8DA-C95B8A9464D3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Sites", "01.Sites", "{DE51CD96-8E00-4184-94E9-B0BE7D52532C}"
 EndProject
@@ -23,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Logic", "02.Logic", "{EE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marsen.Business.Logic", "src\02.Logic\Marsen.Business.Logic\Marsen.Business.Logic.csproj", "{B27EBDB5-F281-400B-9722-064061A74B7D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marsen.CodeGen", "src\99.Tools\Marsen.CodeGen.csproj", "{0DF9A168-C75D-486C-B72B-3324DA33C9D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +33,6 @@ Global
 		{A0A0D1F2-3C9D-40D3-9839-B47210A0A0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0A0D1F2-3C9D-40D3-9839-B47210A0A0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0A0D1F2-3C9D-40D3-9839-B47210A0A0EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{936EC0A7-EF33-4DBB-B8DA-C95B8A9464D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{936EC0A7-EF33-4DBB-B8DA-C95B8A9464D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{936EC0A7-EF33-4DBB-B8DA-C95B8A9464D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{936EC0A7-EF33-4DBB-B8DA-C95B8A9464D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{094FE9B7-0E28-4AFC-87FB-14D87E6ABF99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{094FE9B7-0E28-4AFC-87FB-14D87E6ABF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{094FE9B7-0E28-4AFC-87FB-14D87E6ABF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,16 +45,20 @@ Global
 		{B27EBDB5-F281-400B-9722-064061A74B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B27EBDB5-F281-400B-9722-064061A74B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B27EBDB5-F281-400B-9722-064061A74B7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DF9A168-C75D-486C-B72B-3324DA33C9D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DF9A168-C75D-486C-B72B-3324DA33C9D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DF9A168-C75D-486C-B72B-3324DA33C9D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DF9A168-C75D-486C-B72B-3324DA33C9D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A0A0D1F2-3C9D-40D3-9839-B47210A0A0EC} = {6C573280-0FAD-4572-B38B-C5725A9E8E4A}
-		{936EC0A7-EF33-4DBB-B8DA-C95B8A9464D3} = {E1F7B885-95CD-4787-BF0A-EFAF26827768}
 		{094FE9B7-0E28-4AFC-87FB-14D87E6ABF99} = {DE51CD96-8E00-4184-94E9-B0BE7D52532C}
 		{AEF229EB-0C22-4322-9EB7-EF523BA98967} = {3C171F69-67BB-4CC2-93CF-21EE319D21B5}
 		{B27EBDB5-F281-400B-9722-064061A74B7D} = {EE2D5AF3-9B02-4A17-BAA5-4CF74C6B64C2}
+		{0DF9A168-C75D-486C-B72B-3324DA33C9D4} = {E1F7B885-95CD-4787-BF0A-EFAF26827768}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {33C0AB8E-8BDB-4E79-A0FB-6D779F91D60A}

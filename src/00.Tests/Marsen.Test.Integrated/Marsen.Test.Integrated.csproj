@@ -15,8 +15,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\99.Tools\Marsen.CodeGen\Marsen.CodeGen\Marsen.CodeGen.csproj" />
-  </ItemGroup>
-
 </Project>
