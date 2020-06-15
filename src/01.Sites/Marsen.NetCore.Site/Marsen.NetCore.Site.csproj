@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\02.Logic\Marsen.Business.Logic\Marsen.Business.Logic.csproj" />
+    <ProjectReference Include="..\..\02.Logic\Marsen.NetCore.Business.Logic\Marsen.NetCore.Business.Logic.csproj" />
   </ItemGroup>
 
 </Project>
