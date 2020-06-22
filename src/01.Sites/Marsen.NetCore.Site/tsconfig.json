@@ -1,10 +1,15 @@
 ﻿{
   "compilerOptions": {
-    "outDir": "./wwwroot/dist/",
+    "noEmitOnError": true,
+    "removeComments": false,
     "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
+    "noImplicitAny": false,
     "target": "es6",
+    "outDir": "wwwroot/js",
     "jsx": "react"
-  }
+  },
+  "include": [
+    "scripts/**/*",
+    "src"
+  ]
 }

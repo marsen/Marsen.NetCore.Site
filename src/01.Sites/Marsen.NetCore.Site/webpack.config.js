@@ -1,4 +1,6 @@
-﻿module.exports = {
+﻿const path = require('path');
+
+module.exports = {
     mode: "production",
 
     // Enable sourcemaps for debugging webpack's output.
@@ -8,7 +10,9 @@
         // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: [".ts", ".tsx"]
     },
-
+    output:{
+        path: path.resolve(__dirname, './wwwroot/dist')
+    },
     module: {
         rules: [
             {
