@@ -118,6 +118,6 @@ Scaffold-DbContext "Server=localhost;Database=MARS;Trusted_Connection=True;" Mic
 
 ## 參考
 
-- [如何在 Entity Framework Core 使用 Migration ? (PostgreSQL)](https://oomusou.io/efcore/migration/)
+- [如何在 Entity Framework Core 使用 Migration ? (PostgreSQL)](https://old-oomusou.goodjack.tw/efcore/migration/)
 
 (fin)
